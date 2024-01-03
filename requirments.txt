@@ -1,0 +1,1 @@
+pip install chromadb langchain pypdf2 tiktoken streamlit
