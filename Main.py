@@ -4,10 +4,10 @@ from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chains.question_answering import load_qa_chain
-from langchain.chat_models import ChatOpenAI
+from langchain.llms import OpenAI
 from langchain.vectorstores import Chroma
 import chromadb
-os.environ['OPENAI_API_KEY']="Your OpenAI KEY"
+os.environ['OPENAI_API_KEY']="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"
 
 def load_chunk_persist_pdf() -> Chroma:
     pdf_folder_path = "/Users/shreyasr/Documents/Pdf_GenAI/Data"
@@ -17,7 +17,10 @@ def load_chunk_persist_pdf() -> Chroma:
             pdf_path = os.path.join(pdf_folder_path, file)
             loader = PyPDFLoader(pdf_path)
             documents.extend(loader.load())
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
+    text_splitter = CharacterTextSplitter(separator="\n",
+        chunk_size=1000,
+        chunk_overlap=200,
+        length_function=len)
     chunked_documents = text_splitter.split_documents(documents)
     client = chromadb.Client()
     if client.list_collections():
@@ -33,8 +36,8 @@ def load_chunk_persist_pdf() -> Chroma:
     return vectordb
 
 def create_agent_chain():
-    model_name = "gpt-3.5-turbo"
-    llm = ChatOpenAI(model_name=model_name)
+  
+    llm = OpenAI()
     chain = load_qa_chain(llm, chain_type="stuff")
     return chain
 def get_llm_response(query):
