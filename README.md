@@ -40,11 +40,11 @@ Before running the application, ensure you have the necessary API keys for OpenA
 ### Getting Started
 
 1. Clone this repository to your local machine.
-2. Create a `secret_key.py` file in the project root directory.
-3. Add your OpenAI API key to the `secret_key.py` file:
+2. Create a `.env` file in the project root directory.
+3. Add your OpenAI API key to the `.env` file:
    
    ```python
-   # secret_key.py
+   # .env
    openapi_key="YOUR_API_KEY_HERE"
    
 4. Download the json file from GCP and name the file as `credentials.json`. Save this file in the project root directory.
