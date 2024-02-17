@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-load_dotenv()
+
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -15,7 +15,7 @@ from googleapiclient.discovery import build
 from requests import HTTPError
 import mail
 import Translate
-
+load_dotenv()
 def main():
     st.set_page_config(page_title="Ask your PDF")
     st.header("Ask your PDF 💬")

@@ -1,7 +1,6 @@
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -21,4 +20,3 @@ def generate_translation(language, text):
 if __name__ == "__main__":
     print(generate_translation("French","Hello"))
 
-# run using "streamlit run translation.py"
